@@ -1,0 +1,121 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-pencil"></span>Calificar Pregunta
+    </h4>
+</div>
+<form name="qualifyForm" novalidate>
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body" style="padding-bottom: 0; padding-top: 0;">
+            <div class="form-group input-group-xs" style="margin-top: 15px;">
+                <label class="control-label col-xs-4">Opciones</label>
+                <div class="col-xs-8" style="padding-right: 0px;">
+                    <div class="form-group" ng-bind-html="scaleItem.variables">
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="values">Valor de Variable *</label>
+                <div class="col-xs-8" style="padding-right: 0px;" ng-if="!numberRange">
+                    <div class="form-group">
+                        <select class="form-control" required="required" id="valuesCombo" name="valuesCombo"
+                                ng-options="item as item.description for item in q.valuesCombo track by item.id"
+                                ng-model="q.valuesComboSelected">
+                            <option value="">--Seleccione--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-4" style="padding-right: 0px;" ng-if="numberRange">
+                    <div class="form-group input-group number-spinner">
+                        <span class="input-group-btn data-dwn">
+                            <button ng-disabled="q.valueQSelected === undefined" class="btn btn-default btn-info" data-dir="dwn" number-spinner style="font-size: 10px;"><span class="glyphicon glyphicon-minus"></span></button>
+                        </span>
+                            <input class="form-control text-center"
+                                   name="valueQ" id="valueQ" min="{{q.valueQ[0]}}" max="{{q.valueQ[1]}}"
+                                   placeholder="Valor"
+                                   ng-model="q.valueQSelected" numbers-only required style="height: 28px;"/>
+                        <span class="input-group-btn data-up">
+                            <button ng-disabled="q.valueQSelected === undefined" class="btn btn-default btn-info" data-dir="up" number-spinner style="font-size: 10px;"><span class="glyphicon glyphicon-plus"></span></button>
+                        </span>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="!qualifyForm.$pristine && qualifyForm.valuesCombo.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="!qualifyForm.$pristine && qualifyForm.valueQ.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="!qualifyForm.$pristine && qualifyForm.valueQ.$error.pattern">Valor fuera de rango.</span>
+                <div ng-class="numberRange ? 'col-xs-3': 'col-xs-offset-9 col-xs-3'" class="" style="margin-top: 2px;" ng-show="(q.valueQSelected !== undefined || q.valuesComboSelected !== undefined) && qualifyForm.valueQ.$error.pattern === undefined">
+                    <div style="border: 1px solid #ccc;border-radius: 3px;">
+                        <button type="button" class="btn btn-default btn-xs btn-success" style="font-size: 12px;" ng-click="getCriteria()" title="Obtener Evaluación">
+                            <span class="glyphicon glyphicon-check" aria-hidden="true" style="margin: 0;"></span>
+                        </button>
+                        <span class="text-info" ng-show="rating !== undefined" style="vertical-align: middle;">{{rating == 1 ? "un punto" : rating + " puntos"}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-12" style="margin-top: 0px;">Observación</label>
+                <div class="col-xs-12" style="padding-right: 0px;" style="margin-top: 15px;">
+                    <div class="row">
+                       <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="glyphicon glyphicon-font"></i><b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li><li><a data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li><li><a data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li><li><a data-edit="fontName Arial Black" style="font-family:'Arial Black'">Arial Black</a></li><li><a data-edit="fontName Courier" style="font-family:'Courier'">Courier</a></li><li><a data-edit="fontName Courier New" style="font-family:'Courier New'">Courier New</a></li><li><a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'">Comic Sans MS</a></li><li><a data-edit="fontName Helvetica" style="font-family:'Helvetica'">Helvetica</a></li><li><a data-edit="fontName Impact" style="font-family:'Impact'">Impact</a></li><li><a data-edit="fontName Lucida Grande" style="font-family:'Lucida Grande'">Lucida Grande</a></li><li><a data-edit="fontName Lucida Sans" style="font-family:'Lucida Sans'">Lucida Sans</a></li><li><a data-edit="fontName Tahoma" style="font-family:'Tahoma'">Tahoma</a></li><li><a data-edit="fontName Times" style="font-family:'Times'">Times</a></li><li><a data-edit="fontName Times New Roman" style="font-family:'Times New Roman'">Times New Roman</a></li><li><a data-edit="fontName Verdana" style="font-family:'Verdana'">Verdana</a></li></ul>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="glyphicon glyphicon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                    <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                    <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="glyphicon glyphicon-bold"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="glyphicon glyphicon-italic"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="underline" title="" data-original-title="Underline (Ctrl/Cmd+U)"><i class="glyphicon glyphicon-text-width"></i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="glyphicon glyphicon-list"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="indent" title="" data-original-title="Indent (Tab)"><i class="glyphicon glyphicon-indent-left"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)"><i class="glyphicon glyphicon-indent-right"></i></a>
+
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="glyphicon glyphicon-align-left"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="glyphicon glyphicon-align-center"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="glyphicon glyphicon-align-right"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="glyphicon glyphicon-align-justify"></i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="glyphicon glyphicon-link"></i></a>
+                                <div class="dropdown-menu input-append">
+                                    <input class="span2" placeholder="URL" data-edit="createLink" type="text">
+                                    <button class="btn" type="button">Add</button>
+                                </div>
+                                <a class="btn btn-default btn-xs" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="glyphicon glyphicon-remove"></i></a>
+
+                            </div>
+
+                           <!-- <div class="btn-group">
+                                <a class="btn btn-default btn-xs" title="" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="glyphicon glyphicon-picture"></i></a>
+                                <input data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" style="opacity: 0; position: absolute; top: 0px; left: 0px; width: 37px; height: 30px;" type="file">
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="glyphicon glyphicon-backward"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="glyphicon glyphicon-forward"></i></a>
+                            </div>-->
+                        </div>
+                        <div id="editor" class="well col-xs-11" wysiwyg cleanhtml contenteditable ng-model="q.description" style="height: 250px; width: 97.3%; margin-top: 10px; margin-bottom: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button type="submit" class="btn btn-success pull-right" ng-click="submitForm(q)">Guardar</button>
+</div>
+</form>

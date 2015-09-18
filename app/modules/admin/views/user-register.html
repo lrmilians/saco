@@ -1,0 +1,132 @@
+<div class="jumbotron" ng-controller="userRegisterCtrl as urc">
+  <div class="row" ng-init="urc.initCtrl(false)">
+    <div class="col-md-4 with-margin-right-1 with-margin-left-1">
+      <h3>{{'userregText1' | translate}}</h3>
+      <p class="text-justify">{{'userregText2' | translate}}</p>
+    </div>
+    <div class="col-md-7 panel panel-default with-margin-left-1">
+        <div class="panel panel-info" style="margin: 15px 0px;">
+            <div class="panel-heading">
+                <table width="100%">
+                    <tr>
+                        <td style="text-align: left;"><h3 style="margin: 0;">{{'userregText3' | translate}}</h3></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="urc.register()" name="userForm">
+                    <div class="form-group required">
+                        <label for="userName" class="col-sm-4 control-label">{{'userregLbUsername' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="userName"
+                                   ng-model="urc.userName" required="required"
+                                   placeholder="{{'userregPhUsername' | translate}}"
+                                   name="userName" ng-pattern="patternUserName">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userForm.userName.$error.pattern">{{'userregMsgText1' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label" for="inputPassword">{{'userregLbPassword' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input my-strengthpass id="password_input_register" ng-model="urc.pwd" class="form-control" required type="password" id="inputPassword" placeholder="{{'userregPhPassword' | translate}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="password_c" class="col-sm-4 control-label">{{'userregLbPassword2' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="password_c"
+                                   name="password_c" required="required" ng-model="urc.pwd2"
+                                   ng-change="urc.checkPassword()"
+                                   placeholder="{{'userregPhPassword2' | translate}}">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="urc.dontMatch">{{'userregMsgText2' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="nombres" class="col-sm-4 control-label">{{'userregLbEmail' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control" id="email"
+                                   ng-model="urc.email" required="required"
+                                   placeholder="{{'userregPhEmail' | translate}}" name="email">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userForm.email.$error.email">{{'userregMsgText3' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="nombres" class="col-sm-4 control-label">{{'userregLbFirstName' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="nombres"
+                                   ng-model="urc.nombres" required="required" placeholder="{{'userregPhFirstName' | translate}}"
+                                   name="firstName" ng-pattern="patternFirstName">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userForm.firstName.$error.pattern">{{'userregMsgText4' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="apellidos" class="col-sm-4 control-label">{{'userregLbLastName' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="apellidos"
+                                   ng-model="urc.apellidos" required="required"
+                                   placeholder="{{'userregPhLastName' | translate}}"
+                                   name="lastName" ng-pattern="patternLastName">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userForm.lastName.$error.pattern">{{'userregMsgText5' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="idioma" class="col-sm-4 control-label">{{'userregLbLanguage' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" required="required" id="idioma" name="idioma"
+                                    ng-options="item as item.descripcion | translate for item in urc.idiomas track by item.id"
+                                    ng-model="urc.idiomaSeleccionado">
+                                <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                            </select>
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="!userForm.$pristine && userForm.idioma.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="encuesta" class="col-sm-5 control-label">{{'userregLbInfochannel' | translate}} *</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" required="required" id="encuesta" name="encuesta"
+                                    ng-options="item.{{ encuentaDescripcion }} for item in urc.encuesta track by item.id"
+                                    ng-model="urc.encuestaSeleccionada">
+                                <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                            </select>
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="!userForm.$pristine && userForm.encuesta.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="canales" class="col-sm-4 control-label">{{'userregLbChannel' | translate}}</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" required="required" show-combo id="canales" name="canales"
+                                    ng-options="item as item.label | translate for item in urc.canales track by item.id"
+                                    ng-model="urc.canalSeleccionado">
+                                <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                            </select>
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="!userForm.$pristine && userForm.canales.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                    </div>
+
+                    <div class="form-group" ng-show="urc.canalSeleccionado.id == 3">
+                        <label for="convocatorias" class="col-sm-4 control-label">{{'userregLbCall' | translate}}</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" show-combo id="convocatorias" name="convocatorias"
+                                    ng-options="item as item.label for item in urc.convocatorias track by item.id"
+                                    ng-model="urc.convocatoriaSeleccionada">
+                                <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                            </select>
+                        </div>
+                        <!--<span class="col-sm-12 text-danger text-right" ng-show="!userForm.$pristine && userForm.convocatorias.$error.required">{{'FIELD_MANDATORY' | translate}}</span>-->
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">{{'userloginBtnRegister' | translate}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

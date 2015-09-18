@@ -1,0 +1,67 @@
+<div class="jumbotron" ng-controller="userRegisterCtrl as ur">
+  <div class="row" ng-init="ur.initCtrl(true)">
+    <div class="col-md-4 with-margin-right-1 with-margin-left-1">
+      <h3>{{'userregText1' | translate}}</h3>
+      <p class="text-justify">{{'userregProfileIntruc1' | translate}}</p>
+      <!--<p class="text-justify">{{'userregProfileIntruc2' | translate}}</p>-->
+    </div>
+    <div class="col-md-7 panel panel-default with-margin-left-1">
+        <div class="panel panel-info" style="margin: 15px 0px;">
+            <div class="panel-heading">
+                <table width="100%">
+                    <tr>
+                        <td style="width: 60%; text-align: left;"><h3 style="margin: 0;">{{'userregText4' | translate}}</h3></td>
+                        <td style="width: 40%; text-align: right;"><button type="button" class="btn btn-primary" ng-click="ur.changePassword()">{{'userregBtn1' | translate}}</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="ur.setUserProfile()" name="userProfileForm">
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">{{'userregLbUsername' | translate}}</label>
+                        <label class="col-sm-7 control-label" style="font-weight: normal; text-align: left;">{{ur.userName}}</label>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-4 control-label">{{'userregLbEmail' | translate}}</label>
+                        <label class="col-sm-7 control-label" style="font-weight: normal; text-align: left;">{{ur.email}}</label>
+                    </div>
+                    <div class="form-group required">
+                        <label for="firstName" class="col-sm-4 control-label">{{'userregLbFirstName' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="firstName"
+                                   ng-model="ur.firstName" required="required" placeholder="{{'userregPhFirstName' | translate}}"
+                                   name="firstName" ng-pattern="patternFirstName">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userProfileForm.firstName.$error.required">{{'userregMsgText4' | translate}}</span>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userProfileForm.firstName.$error.pattern">{{'userregMsgText4' | translate}}</span>
+                    </div>
+                    <div class="form-group required">
+                        <label for="lastName" class="col-sm-4 control-label">{{'userregLbLastName' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="lastName"
+                                   ng-model="ur.lastName" required="required"
+                                   placeholder="{{'userregPhLastName' | translate}}"
+                                   name="lastName" ng-pattern="patternLastName">
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="userProfileForm.lastName.$error.pattern">{{'userregMsgText5' | translate}}</span>
+                    </div>
+                    <div class="form-group required">
+                        <label for="idioma" class="col-sm-4 control-label">{{'userregLbLanguage' | translate}} *</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" required="required" id="idioma" name="idioma"
+                                    ng-options="item as item.descripcion | translate for item in ur.idiomas track by item.id"
+                                    ng-model="ur.selectedLanguage">
+                                <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                            </select>
+                        </div>
+                        <span class="col-sm-12 text-danger text-right" ng-show="!userProfileForm.$pristine && userProfileForm.idioma.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">{{'SAVE' | translate}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

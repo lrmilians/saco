@@ -1,0 +1,125 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-cog"></span> {{'workExperienceDialogText1' | translate}}
+    </h4>
+</div>
+<form name="workExperienceForm">
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body">
+            <div class="alert alert-warning">{{'proccessApplicIntrucFile' | translate}}</div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="charge">{{'processApplicSec4TbhCharge' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="charge" id="charge"
+                               placeholder="{{'workExperienceDialogPhCharge' | translate}}"
+                               ng-model="workExperience.charge" required="required" ng-pattern="patternCharge">
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="workExperienceForm.charge.$error.pattern">{{'workExperienceDialogMsgText1' | translate}}</span>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="entity">{{'processApplicSec4TbhEntity' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="entity" id="entity"
+                               placeholder="{{'workExperienceDialogPhEntity' | translate}}"
+                               ng-model="workExperience.entity" required="required" ng-pattern="patternEntity">
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="workExperienceForm.entity.$error.pattern">{{'educationDialogMsgText1' | translate}}</span>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="monthsDuration">{{'processApplicSec4TbhMonthsDuration' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <input type="number" class="form-control"
+                               name="monthsDuration" id="monthsDuration" min="1"
+                               placeholder="{{'workExperienceDialogPhMonthsDuration' | translate}}"
+                               ng-model="workExperience.monthsDuration" required="required" ng-pattern="patternMonthsDuration" />
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="!workExperienceForm.$pristine && workExperienceForm.monthsDuration.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="workExperienceForm.monthsDuration.$error.pattern">{{'workExperienceDialogMsgText2' | translate}}</span>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="workExperienceForm.monthsDuration.$error.min">{{'FIELD_NUMBER_MIN0' | translate}}</span>
+            </div>
+            <div class="input-group input-daterange col-xs-12" id="datepicker" mydatepicker-rangedate-year style="margin-bottom: 15px;">
+                <div class="form-group input-group-xs required" >
+                    <label for="startDate" class="col-xs-4 control-label">{{'educationDialogLbStartDate' | translate}} *</label>
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="startDate" id="startDate"
+                                   ng-model="workExperience.startYear" required="required"
+                                   placeholder="{{'univTeachingDialogPhStartYear' | translate}}" />
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>-->
+                        </div>
+                    </div>
+                    <span class="text-danger text-right col-xs-11" style="margin: 10px 0 10px 0;" ng-show="!educationForm.$pristine && educationForm.startDate.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                </div>
+                <div class="form-group input-group-xs required" style="margin: 50px 0 15px 0;">
+                    <label for="endDate" class="col-xs-4 control-label">{{'educationDialogLbEndDate' | translate}} *</label>
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="endDate" id="endDate"
+                                   ng-model="workExperience.endYear" required="required"
+                                   placeholder="{{'univTeachingDialogPhEndYear' | translate}}" />
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>-->
+                        </div>
+                    </div>
+                    <span class="text-danger text-right col-xs-11" style="margin: 10px 0 10px 0;" ng-show="!educationForm.$pristine && educationForm.endDate.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                </div>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="activities">{{'workExperienceDialogLbActivities' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px; text-align: left;">
+                    <div class="form-group">
+                        <textarea class="form-control"
+                                  name="activities" id="activities" rows="3"
+                                  placeholder="{{'workExperienceDialogPhActivities' | translate}}"
+                                  ng-model="workExperience.activities" required="required" ng-pattern="patternActivities"></textarea>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0;" ng-show="workExperienceForm.activities.$error.pattern">{{'workExperienceDialogMsgText3' | translate}}</span>
+            </div>
+            <div class="form-group input-group-xs" style="margin-bottom: 15px;">
+                <label class="control-label col-xs-8" for="countrys">{{'workExperienceDialogLbJob' | translate}} *</label>
+                <div class="col-xs-3" style="padding-right: 0px; margin-bottom: 20px;">
+                    <div class="radio radio-info radio-inline">
+                        <input id="yes" type="radio" name="yes" ng-value="true" ng-model="workExperience.job" ng-required="!workExperience.job">
+                        <label for="yes">{{'yes' | translate}}</label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input id="no" type="radio" name="no" ng-value="false" ng-model="workExperience.job" ng-required="!workExperience.job">
+                        <label for="no">{{'no' | translate}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin: 15px 0px;">
+                <label for="fileTitle" class="col-xs-4 control-label">{{'workExperienceDialogLbTitleUpload' | translate}}</label>
+                <div class="col-xs-7">
+                    <div class="form-group">
+                        <div class="input text required">
+                            <input type="file" ng-model="workExperience.fileTitle" name="fileTitle" load-filename  id="fileTitle">
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="dataEmpty == false && workExperience.nameFile !== null" id="viewFile" class="panel panel-success col-xs-offset-4 col-xs-7" style="padding: 0px; margin-bottom: 0px;">
+                    <div class="panel-heading" style="padding: 5px 15px;">
+                        <a href="{{workExperience.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                            <span class="sr-only"></span>{{workExperience.nameFile}}
+                        </a>
+                    </div>
+                </div>
+                <span class="col-sm-12 text-danger text-right" ng-show="workExperienceForm.fileTitle.$error.pattern">{{'userregMsgText5' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{'educationDialogBtnCancel' | translate}}</button>
+    <button type="submit" class="btn btn-success pull-right" ng-click="submitForm(conference)">{{'workExperienceDialogBtnAdd' | translate}}</button>
+</div>
+</form>

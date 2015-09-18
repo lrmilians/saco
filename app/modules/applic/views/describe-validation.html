@@ -1,0 +1,179 @@
+<div class="jumbotron">
+    <div class="row" ng-controller="validationCtrl as vc" ng-init="vc.initCtrl()">
+        <div class="col-md-12 panel panel-default">
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="width: 60%; text-align: left;"><h3 style="margin: 0;">CONVALIDACIÓN</h3></td>
+                            <td style="width: 40%; text-align: right;">
+                                <button type="button" class="btn btn-default btn-primary" ng-click="vc.searchApplication()">
+                                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>Historial
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <h4>Datos del postulante</h4>
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Nombre</th>
+                                <th style="width: 25%;">Apellidos</th>
+                                <th style="width: 20%;">Correo electrónico</th>
+                                <th style="width: 20%;">Teléfono Principal</th>
+                                <th style="width: 15%;">Idioma</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{vc.applicData.nombres}}</td>
+                                <td>{{vc.applicData.apellidos}}</td>
+                                <td>{{vc.applicData.email}}</td>
+                                <td></td>
+                                <td>{{vc.applicData.tipoPostulacionNombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row" style="margin: 0;">
+                        <div class="col-sm-2 alert" style="vertical-align: middle; margin-bottom: 0;">
+                            <a type="button" class="btn btn-default btn-sm btn-warning" style="font-size: 12px;" ng-href="#/application-detail/{{vc.applicData.idPostulacion}}" target="_blank" title="{{'dashboardViewApplic' | translate}}">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Ver Postulación
+                            </a>
+                        </div>
+                        <div class="col-sm-10 alert alert-info" style="margin-bottom: 0;">
+                            <p style="margin-bottom: 0;">Las opciones mostradas a continuación están en {{qc.applicData.email}}, dado que el perfil actual del usuario está configurado en este idioma.<br>
+                            La notificación será enviada en el Idioma preferido del postulante asi como las opciones de convalidación.<br>
+                            En Describir Convalidación tomar en cuenta su idioma actual.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="margin: 20px 20px;">
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox1" type="checkbox">
+                            <label for="checkbox1"> Proyectos de investigación liderados y no liderados </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox2" type="checkbox">
+                            <label for="checkbox2"> Detalle de las publicaciones indexadas </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox3" type="checkbox">
+                            <label for="checkbox3"> Conferencias a las que ha sido invitado a participar como ponente </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox4" type="checkbox">
+                            <label for="checkbox4"> Libros publicados (autor o co-autor) </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox5" type="checkbox">
+                            <label for="checkbox5"> Experiencia en gestión administrativa </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox6" type="checkbox">
+                            <label for="checkbox6"> Experiencia en docencia </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox7" type="checkbox">
+                            <label for="checkbox7"> Premios, reconocimientos y becas </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox8" type="checkbox">
+                            <label for="checkbox8"> Asesorías o consultorías </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox9" type="checkbox">
+                            <label for="checkbox9"> Registro de patentes </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox10" type="checkbox">
+                            <label for="checkbox10"> Cartas de recomendación </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox11" type="checkbox">
+                            <label for="checkbox11"> Reconocimientos relacionados con la calidad de la actividad docente (otorgados por la máxima autoridad) </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox12" type="checkbox">
+                            <label for="checkbox12"> Desempeño de cargos unipersonales de responsabilidad en gestión universitaria </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox13" type="checkbox">
+                            <label for="checkbox13"> Proyectos de innovación docente </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox14" type="checkbox">
+                            <label for="checkbox14"> Dirección de tesis doctorales, master, asesoría de proyectos de fin de carrera, DEA </label>
+                        </div>
+                        <div class="checkbox checkbox-danger">
+                            <input id="checkbox15" type="checkbox">
+                            <label for="checkbox15"> Participación como ponente en congresos orientados a la formación docente universitaria </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" style="margin: 0;">
+                        <label class="control-label col-xs-12" style="margin-top: 0px;">Describir Convalidación</label>
+                        <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="glyphicon glyphicon-font"></i><b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-edit="fontName Serif" style="font-family:'Serif'">Serif</a></li><li><a data-edit="fontName Sans" style="font-family:'Sans'">Sans</a></li><li><a data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li><li><a data-edit="fontName Arial Black" style="font-family:'Arial Black'">Arial Black</a></li><li><a data-edit="fontName Courier" style="font-family:'Courier'">Courier</a></li><li><a data-edit="fontName Courier New" style="font-family:'Courier New'">Courier New</a></li><li><a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'">Comic Sans MS</a></li><li><a data-edit="fontName Helvetica" style="font-family:'Helvetica'">Helvetica</a></li><li><a data-edit="fontName Impact" style="font-family:'Impact'">Impact</a></li><li><a data-edit="fontName Lucida Grande" style="font-family:'Lucida Grande'">Lucida Grande</a></li><li><a data-edit="fontName Lucida Sans" style="font-family:'Lucida Sans'">Lucida Sans</a></li><li><a data-edit="fontName Tahoma" style="font-family:'Tahoma'">Tahoma</a></li><li><a data-edit="fontName Times" style="font-family:'Times'">Times</a></li><li><a data-edit="fontName Times New Roman" style="font-family:'Times New Roman'">Times New Roman</a></li><li><a data-edit="fontName Verdana" style="font-family:'Verdana'">Verdana</a></li></ul>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="glyphicon glyphicon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                    <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                    <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="glyphicon glyphicon-bold"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="glyphicon glyphicon-italic"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="underline" title="" data-original-title="Underline (Ctrl/Cmd+U)"><i class="glyphicon glyphicon-text-width"></i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="glyphicon glyphicon-list"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="indent" title="" data-original-title="Indent (Tab)"><i class="glyphicon glyphicon-indent-left"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)"><i class="glyphicon glyphicon-indent-right"></i></a>
+
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="glyphicon glyphicon-align-left"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="glyphicon glyphicon-align-center"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="glyphicon glyphicon-align-right"></i></a>
+                                <a class="btn btn-default btn-xs" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="glyphicon glyphicon-align-justify"></i></a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="glyphicon glyphicon-link"></i></a>
+                                <div class="dropdown-menu input-append">
+                                    <input class="span2" placeholder="URL" data-edit="createLink" type="text">
+                                    <button class="btn" type="button">Add</button>
+                                </div>
+                                <a class="btn btn-default btn-xs" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="glyphicon glyphicon-remove"></i></a>
+
+                            </div>
+
+                            <!-- <div class="btn-group">
+                                 <a class="btn btn-default btn-xs" title="" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="glyphicon glyphicon-picture"></i></a>
+                                 <input data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" style="opacity: 0; position: absolute; top: 0px; left: 0px; width: 37px; height: 30px;" type="file">
+                             </div>
+                             <div class="btn-group">
+                                 <a class="btn btn-default btn-xs" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="glyphicon glyphicon-backward"></i></a>
+                                 <a class="btn btn-default btn-xs" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="glyphicon glyphicon-forward"></i></a>
+                             </div>-->
+                        </div>
+                        <div id="editor" class="well col-xs-11" wysiwyg cleanhtml contenteditable ng-model="q.description" style="height: 300px; width: 100%; margin-top: 10px; margin-bottom: 0px;"></div>
+                    </div>
+                    <hr>
+                    <div class="row text-right" style="margin: 0;">
+                        <button type="button" class="btn btn-sm btn-primary" style="font-size: 12px;" ng-click="qc.qualify(scaleDetail)" title="Baremo. {{scale.baremo}}">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

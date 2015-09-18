@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-3">
+      <span class="text-left">Si usted ya es un usuario registrado ingrese su usuario y clave de acceso.</span>
+      <div>
+        <!--<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+             alt="">-->
+        <form class="form-signin" ng-submit="userLoginCtrl.login()" name="loginForm">
+          <input type="text" class="form-control" ng-model="userLoginCtrl.userName" placeholder="Usuario" required autofocus>
+          <input type="password" class="form-control" ng-model="userLoginCtrl.userPassword"  placeholder="Contraseña" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+          <!-- <label class="checkbox pull-left">
+             <input type="checkbox" value="remember-me">Recordar</label>-->
+            <a href="#" class="pull-right need-help">Olvid&oacute; su contraseña? </a><span class="clearfix"></span>
+        </form>
+      </div>
+      <span class="text-left">Si usted aún no está registrado/a y desea postular haga click en registrarse.</span>
+      <a href="#/user-register" class="text-center new-account">Registrarse</a>
+    </div>
+    <div class="col-sm-9">
+      <div class="col-sm-7">
+        <h3 class="h3-without-margin-top">¿Qué es el Proyecto Prometeo?</h3>
+        <p>El Proyecto Prometeo es una iniciativa del Gobierno Ecuatoriano que busca fortalecer las capacidades de investigación en las instituciones públicas del país, a través de la vinculación de investigadores extranjeros y ecuatorianos de alto nivel académico residentes en el exterior. Si usted está interesado en aplicar al Proyecto Prometo podrá hacerlo a través del presente sistema de postulación. Usted debe registrarse para crear su perfil y postular al Proyecto, creando una cuenta de usuario con un e-mail válido, a través del cual podamos contactarlo.</p>
+      </div>
+      <div class="col-sm-2">
+        <img class="img img-rounded img-portada" src="modules/main/images/portada.jpg" alt="..." class="img-rounded">
+      </div>
+    </div>
+  </div>
+</div>
+

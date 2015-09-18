@@ -1,0 +1,741 @@
+<div class="jumbotron">
+    <div class="row" ng-controller="applicDetailCtrl as ad" ng-init="ad.initCtrl()">
+
+        <div data-hbo-tabs id="tabs">
+            <ul>
+                <li><a href="#tabs-1">{{'processApplicMenu1' | translate}}</a></li>
+                <li><a href="#tabs-2">{{'processApplicMenu2' | translate}}</a></li>
+                <li><a href="#tabs-3">{{'processApplicMenu3' | translate}}</a></li>
+                <li><a href="#tabs-4">{{'processApplicMenu4' | translate}}</a></li>
+                <li><a href="#tabs-5">{{'processApplicMenu5' | translate}}</a></li>
+                <li><a href="#tabs-6">{{'processApplicMenu6' | translate}}</a></li>
+            </ul>
+                <div id="tabs-1">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <table width="100%">
+                                <tr>
+                                    <td style="text-align: left;"><h3 style="margin: 0;">{{'processApplicSec1Text1' | translate}}</h3></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'userregLbFirstName' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.nombre}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'userregLbLastName' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.apellido}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbPassport' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.docIdentificacion}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'userregLbFile' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel-heading" style="padding: 0px 0px;">
+                                        <a href="{{ad.generalInfo.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                            <span class="sr-only"></span>{{ad.generalInfo.nombreFile}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'userregLbEmail' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.email}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbGender' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.genero == "M" ? "catMale" : "catFemale" | translate}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbBirthday' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.fechaNacimiento.substr(0,10)}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbBirthCountry' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.paisNacimientoNombre}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbResidenceCountry' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.paisResidenciaNombre}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbPostalAddress' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.direccionPostal}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbMainPhone' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.telefonoPrincipal}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbSecondPhone' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.generalInfo.telefonoSecundario == "null" ? '--' : ad.generalInfo.telefonoSecundario}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-2">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <table width="100%">
+                                <tr>
+                                    <td style="text-align: left;"><h3 style="margin: 0;">{{'processApplicSec2Text1' | translate}}</h3></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th style="">{{'processApplicSec2TbhDegree' | translate}}</th>
+                                    <th style="">Especialización</th>
+                                    <th style="">Sub Especialización</th>
+                                    <th style="">{{'processApplicSec2TbhUniversity' | translate}}</th>
+                                    <th style="">{{'educationDialogLbCountrys' | translate}}</th>
+                                    <th style="">Inicio</th>
+                                    <th style="">Fin</th>
+                                    <th style="">{{'educationDialogLbGetTitles' | translate}}</th>
+                                    <th style="">{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.degrees.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.degrees.length != 0" ng-repeat="degree in ad.degrees">
+                                    <td>{{degree.titulo}}</td>
+                                    <td>{{degree.especializacionDescripcion}}</td>
+                                    <td>{{degree.subEspecializacionDescripcion}}</td>
+                                    <td>{{degree.universidad}}</td>
+                                    <td>{{degree.paisNombre}}</td>
+                                    <td>{{degree.fechaInicio.substr(0,10)}}</td>
+                                    <td>{{degree.fechaFin.substr(0,10)}}</td>
+                                    <td>{{degree.tituloObtenidoNombre}}</td>
+                                    <td>
+                                        <div class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{degree.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{degree.nombreFile}}
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec2Text2' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec2TbhLanguage' | translate}}</th>
+                                    <th>{{'processApplicSec2TbhAbility' | translate}}</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.languages.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.languages.length != 0" ng-repeat="language in ad.languages">
+                                    <td>{{language.descripcion}}</td>
+                                    <td>{{ad.abilitys[language.nivel].descripcion | translate}}</td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec2Text3' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec2TbhInv' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhEntity' | translate}}</th>
+                                    <th>Inicio</th>
+                                    <th>Fin</th>
+                                    <th>{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.postdocs.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.postdocs.length != 0" ng-repeat="postdoc in ad.postdocs">
+                                    <td>{{postdoc.nombreInvestigacion}}</td>
+                                    <td>{{postdoc.institucion}}</td>
+                                    <td>{{postdoc.fechaInicio}}</td>
+                                    <td>{{postdoc.fechaFin}}</td>
+                                    <td>
+                                        <div class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{postdoc.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{postdoc.nombreFile}}
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-3">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec3Text1' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec3TbhEntity' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhCountry' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhBeginningYear' | translate}}</th>
+                                    <th >{{'processApplicSec3TbhFinalYear' | translate}}</th>
+                                    <th>{{'patentDialogLbDescription' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.univTeachings.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.univTeachings.length != 0" ng-repeat="univTeaching in ad.univTeachings">
+                                    <td>{{univTeaching.institucion}}</td>
+                                    <td>{{ad.countrys[univTeaching.idPais].descripcion | translate}}</td>
+                                    <td>{{univTeaching.inicio}}</td>
+                                    <td>{{univTeaching.fin}}</td>
+                                    <td>{{univTeaching.descripcion}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec3Text2' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec3TbhPatentName' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhYearInscription' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhDurationYears' | translate}}</th>
+                                    <th>{{'patentDialogLbPatentType' | translate}}</th>
+                                    <th>{{'patentDialogLbDescription' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.patents.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.patents.length != 0" ng-repeat="patent in ad.patents">
+                                    <td>{{patent.nombre}}</td>
+                                    <td>{{patent.anio}}</td>
+                                    <td>{{patent.tiempo}}</td>
+                                    <td>{{patent.tipoNombre | translate}}</td>
+                                    <td>{{patent.descripcion}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec3Text3' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec3TbhTitle' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhYear' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhCountry' | translate}}</th>
+                                    <th>{{'conferenceDialogPhGuestSpeaker' | translate}}</th>
+                                    <th>{{'conferenceDialogPhOralSpeaker' | translate}}</th>
+                                    <th>{{'patentDialogLbDescription' | translate}}</th>
+                                    <th>{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="pasec3.conferences.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.conferences.length != 0" ng-repeat="conference in ad.conferences">
+                                    <td>{{conference.titulo}}</td>
+                                    <td>{{conference.anio}}</td>
+                                    <td>{{conference.paisNombre | translate}}</td>
+                                    <td>{{conference.invitado == true ? "Si" : "No"}}</td>
+                                    <td>{{conference.ponenteoral == true ? "Si" : "No"}}</td>
+                                    <td>{{conference.descripcion}}</td>
+                                    <td>
+                                        <div ng-show="conference.nombreFile != null" class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{conference.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{conference.nombreFile}}
+                                            </a>
+                                        </div>
+                                        <div ng-show="conference.nombreFile == null">--</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec3Text4' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec3TbhThesisName' | translate}}</th>
+                                    <th>{{'educationDialogLbUniv' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhYear' | translate}}</th>
+                                    <th>{{'directedThesisDialogLbEstudentName' | translate}}</th>
+                                    <th>{{'directedThesisDialogLbLevel' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.directedThesis.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.directedThesis.length != 0" ng-repeat="directedThesi in ad.directedThesis">
+                                    <td>{{directedThesi.titulo}}</td>
+                                    <td>{{directedThesi.nombreUniversidad}}</td>
+                                    <td>{{directedThesi.anio}}</td>
+                                    <td>{{directedThesi.nombreEstudiante}}</td>
+                                    <td>{{directedThesi.nivelNombre | translate}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-4">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec4Text1' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec4TbhCharge' | translate}}</th>
+                                    <th>{{'processApplicSec4TbhEntity' | translate}}</th>
+                                    <th>{{'processApplicSec4TbhMonthsDurationShort' | translate}}</th>
+                                    <th>{{'univTeachingDialogPhStartYearShort' | translate}}</th>
+                                    <th>{{'univTeachingDialogPhEndYearShort' | translate}}</th>
+                                    <th>{{'workExperienceDialogLbActivities' | translate}}</th>
+                                    <th>{{'workExperienceDialogLbJob' | translate}}</th>
+                                    <th>{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.workExperiences.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.workExperiences.length != 0" ng-repeat="workExperience in ad.workExperiences">
+                                    <td>{{workExperience.cargo}}</td>
+                                    <td>{{workExperience.institucion}}</td>
+                                    <td>{{workExperience.duracion}}</td>
+                                    <td>{{workExperience.anioInicio}}</td>
+                                    <td>{{workExperience.anioFin}}</td>
+                                    <td>{{workExperience.actividades}}</td>
+                                    <td>{{workExperience.trabaja == true ? "Si" : "No"}}</td>
+                                    <td>
+                                        <div ng-show="workExperience.nombreFile != null" class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{workExperience.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{workExperience.nombreFile}}
+                                            </a>
+                                        </div>
+                                        <div ng-show="workExperience.nombreFile == null">--</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                           <h3 style="margin: 0;">{{'processApplicSec4Text2' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec4TbhProject' | translate}}</th>
+                                    <th>{{'processApplicSec4TbhEntity' | translate}}</th>
+                                    <th>{{'processApplicSec4TbhRoleShort' | translate}}</th>
+                                    <th>{{'patentDialogLbDescription' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.projects.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.projects.length != 0" ng-repeat="project in ad.projects">
+                                    <td>{{project.proyecto}}</td>
+                                    <td>{{project.institucion}}</td>
+                                    <td>{{project.role | translate}}</td>
+                                    <td>{{project.descripcion}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec4Text3' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec4TbhEntity' | translate}}</th>
+                                    <th>{{'univTeachingDialogLbDescription' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.advices.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.advices.length != 0" ng-repeat="advice in ad.advices">
+                                    <td>{{advice.institucion}}</td>
+                                    <td>{{advice.descripcion}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec4Text4' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'processApplicSec4TbhParticipation' | translate}}</th>
+                                    <th>Coautor</th>
+                                    <th>{{'educationDialogLbTitle' | translate}}</th>
+                                    <th>{{'publishedBookApplicSec4TbhPubYear' | translate}}</th>
+                                    <th>{{'publishedBookDialogLbEditorial' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.publishedBooks.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.publishedBooks.length != 0" ng-repeat="publishedBook in ad.publishedBooks">
+                                    <td>{{publishedBook.role | translate}}</td>
+                                    <td ng-show="publishedBook.participacion == 'C'">{{publishedBook.coautor}}</td>
+                                    <td ng-show="publishedBook.participacion != 'C'">--</td>
+                                    <td>{{publishedBook.titulo}}</td>
+                                    <td>{{publishedBook.anio}}</td>
+                                    <td>{{publishedBook.editorial}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec4Text6' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'educationDialogLbTitle' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhEntity' | translate}}</th>
+                                    <th>{{'expCourseThHours' | translate}}</th>
+                                    <th style="">{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.expCourses.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.expCourses.length != 0" ng-repeat="expCourse in ad.expCourses">
+                                    <td>{{expCourse.titulo | translate}}</td>
+                                    <td>{{expCourse.institucion}}</td>
+                                    <td>{{expCourse.numeroHoras}}</td>
+                                    <td>
+                                        <div ng-show="expCourse.nombreFile != null" class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{expCourse.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{expCourse.nombreFile}}
+                                            </a>
+                                        </div>
+                                        <div ng-show="expCourse.nombreFile == null" class="panel-heading" style="padding: 0px 0px;">--</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec4Text5' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-4">
+                                    <strong>{{'processApplicLbNumberPub' | translate}}</strong>
+                                </div>
+                                <div class="col-md-4">
+                                    {{ad.applicGralInfo.publicaciones}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-5">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec5Text1' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'univTeachingDialogLbEntity' | translate}}</th>
+                                    <th>{{'univTeachingDialogLbDescription' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.affiliations.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.affiliations.length != 0" ng-repeat="affiliation in ad.affiliations">
+                                    <td>{{affiliation.institucion}}</td>
+                                    <td>{{affiliation.descripcion}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec5Text2' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                                <thead>
+                                <tr>
+                                    <th>{{'univTeachingDialogLbTypeReco' | translate}}</th>
+                                    <th>{{'processApplicSec3TbhYear' | translate}}</th>
+                                    <th>{{'univTeachingDialogLbDescription' | translate}}</th>
+                                    <th>{{'userregLbFile' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-if="ad.scholarships.length === 0">
+                                    <td colspan="5">
+                                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{'processApplicSec2TbEmpty' | translate}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="ad.scholarships.length != 0" ng-repeat="scholarship in ad.scholarships">
+                                    <td>{{scholarship.typeRecog | translate}}</td>
+                                    <td>{{scholarship.anio}}</td>
+                                    <td>{{scholarship.descripcion}}</td>
+                                    <td>
+                                        <div ng-show="scholarship.nombreFile != null" class="panel-heading" style="padding: 0px 0px;">
+                                            <a href="{{scholarship.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                                <span class="sr-only"></span>{{scholarship.nombreFile}}
+                                            </a>
+                                        </div>
+                                        <div ng-show="conference.nombreFile == null">--</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h4 style="margin: 0;">{{'processApplicSec5Text3' | translate}}</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-3">
+                                    <strong>{{'processApplicLbInstitution' | translate}}</strong>
+                                </div>
+                                <div class="col-md-5">
+                                    {{ad.previousContact.institutionNombre}}
+                                </div>
+                                <div class="col-md-2">
+                                    <strong>{{'processApplicLbAcronym' | translate}}</strong>
+                                </div>
+                                <div class="col-md-2">
+                                    {{ad.previousContact.acronym}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-3">
+                                    <strong>{{'processApplicLbContactName' | translate}}</strong>
+                                </div>
+                                <div class="col-md-3">
+                                    {{ad.previousContact.contactName}}
+                                </div>
+                                <div class="col-md-3">
+                                    <strong>{{'processApplicLbContactEmailShort' | translate}}</strong>
+                                </div>
+                                <div class="col-md-3">
+                                    {{ad.previousContact.contactEmail}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-6">
+                    <div class="panel panel-info" style="margin: 15px 0px;">
+                        <div class="panel-heading">
+                            <h3 style="margin: 0;">{{'processApplicSec6Text1' | translate}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin: 15px 0;">
+                                <div class="col-md-3">
+                                    <strong>{{'curriculumVitaeLb' | translate}}</strong>
+                                </div>
+                                <div class="col-md-5">
+                                    <div ng-show="ad.curriculumVitae.nameFile != null" class="panel-heading" style="padding: 0px 0px;">
+                                        <a href="{{ad.curriculumVitae.urlFile}}" target="_blank"><span class="glyphicon glyphicon-download-alt panel-title" aria-hidden="true"></span>
+                                            <span class="sr-only"></span>{{ad.curriculumVitae.nameFile}}
+                                        </a>
+                                    </div>
+                                    <div ng-show="ad.curriculumVitae.nameFile == null" class="panel-heading" style="padding: 0px 0px;">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

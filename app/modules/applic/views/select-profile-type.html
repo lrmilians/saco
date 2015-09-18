@@ -1,0 +1,39 @@
+<div class="jumbotron" ng-controller="startApplicCtrl as sa">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="col-md-12 panel panel-default" style="padding-top: 10px;">
+                <form class="form-horizontal" ng-submit="urc.register()" name="userForm">
+                    <label class="text-primary">{{'startApplicLbComments' | translate}}</label>
+                    <textarea id="comments" class="form-control" rows="3"></textarea>
+                    <div style="text-align: right; padding: 10px;">
+                        <button type="button" class="btn btn-primary">{{'startApplicBtnSave' | translate}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9 panel panel-default">
+            <h4><label class="text-primary">{{'startApplicText1' | translate}}</label></h4>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>{{'startApplicTbhProfileType' | translate}}</th>
+                    <th>{{'startApplicTbhDescription' | translate}}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{'startApplicTbrResearcher' | translate}}</th>
+                        <td>{{'startApplicTbrResearcherDescrip' | translate}}</td>
+                        <td><button type="button" title="{{'startApplicBtnSelectProfile' | translate}}" class="btn btn-primary" ng-click="sa.selectInvestType('I')">{{'startApplicBtnSelectProfile' | translate}}</button></td>
+                    </tr>
+                    <tr>
+                        <th>{{'startApplicTbrTeacher' | translate}}</th>
+                        <td>{{'startApplicTbrTeacherDescrip' | translate}}</td>
+                        <td><button type="button" title="{{'startApplicBtnSelectProfile' | translate}}" class="btn btn-primary" ng-click="sa.selectInvestType('D')">{{'startApplicBtnSelectProfile' | translate}}</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

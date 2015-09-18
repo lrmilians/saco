@@ -1,0 +1,68 @@
+<div class="jumbotron">
+    <div class="row" ng-controller="processApplicSection6Ctrl as pasec6">
+        <div class="col-md-12 panel panel-default" ng-init="pasec6.initCtrl()">
+            <div class="col-md-12" style="padding: 0;">
+                <div class="col-md-4" style="padding: 0;">
+                    <h4><label class="text-primary">
+                        <span aria-hidden="true" class="glyphicon glyphicon-question-sign"></span>
+                        <span class="sr-only">Error:</span>
+                        {{'processApplicText1' | translate}}</label></h4>
+                </div>
+                <div ng-class="{'col-md-6' : pasec6.applicGralInfo.avance == 100,'col-md-8' : pasec6.applicGralInfo.avance != 100}" style="padding: 0;">
+                    <div class="progress progress-striped" style="margin: 10px;">
+                        <div class="progress-bar {{pasec6.classProgress}}" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{pasec6.applicGralInfo.avance}}%">
+                            <span ng-class="{'text-primary' : pa.applicGralInfo.avance == 0}">{{pasec6.applicGralInfo.avance}}%</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding: 0; margin: 5px 0;" ng-show="pasec6.applicGralInfo.avance == 100">
+                    <button type="button" class="btn btn-info" ng-click="registerApplic1()">{{'processApplicBtn1' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 panel panel-default" style="padding: 10px">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#/section1-general-information">{{'processApplicMenu1' | translate}}</a></li>
+                <li><a href="#/section2-education">{{'processApplicMenu2' | translate}}</a></li>
+                <li><a href="#/section3-university-teaching">{{'processApplicMenu3' | translate}}</a></li>
+                <li><a href="#/section4-work-experience">{{'processApplicMenu4' | translate}}</a></li>
+                <li><a href="#/section5-affiliation">{{'processApplicMenu5' | translate}}</a></li>
+                <li><a href="#/section6-file">{{'processApplicMenu6' | translate}}</a></li>
+                <li class="active"><a href="#/section7-to-complete">{{'processApplicMenu7' | translate}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 panel panel-default">
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: left;"><h3 style="margin: 0;">{{pasec6.toCompleteText | translate}}</h3></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <tbody>
+                        <tr ng-if="pasec6.toCompletes.length === 0">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-success" style="margin-bottom: 0; padding: 5px;">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{'processApplicSec2TbComplete' | translate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="pasec6.toCompletes.length != 0" ng-repeat="toComplete in pasec6.toCompletes">
+                            <td style="width: 80%;">{{toComplete.description | translate}}</td>
+                            <td style="width: 20%; text-align: right;"><button type="button" class="btn btn-xs btn-danger" ng-click="continue(toComplete.url)">{{'processApplicBtnGoForm' | translate}}</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

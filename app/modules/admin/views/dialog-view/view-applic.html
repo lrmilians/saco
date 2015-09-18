@@ -1,0 +1,84 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-book"></span> {{'dashboardApplicDetail' | translate}}
+    </h4>
+</div>
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body">
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhProcess' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.actividad}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhApplicType' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.tipoPostulacion | translate}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhUser' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.username}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhState' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.estado | translate}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhCreated' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.fechaInicio}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhEnd' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.fechaFin}}
+                </div>
+            </div>
+            <div class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhApplicType' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    {{procces.tipoPostulacion | translate}}
+                </div>
+            </div>
+            <div ng-show="procces.estado == 'ENPROGRESO'" class="row" style="margin: 15px 0;">
+                <div class="col-xs-5">
+                    <strong>{{'dashboardTbhPercent' | translate}}</strong>
+                </div>
+                <div class="col-xs-7">
+                    <div class="progress progress-striped" style="margin: 0px;">
+                        <div class="progress-bar {{classProgress}}" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{procces.avancePostulacion}}%">
+                            <span ng-class="{'text-primary' : procces.avancePostulacion == 0}">{{procces.avancePostulacion}}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success pull-right" ng-click="cancel()">{{'DIALOGS_OK' | translate}}</button>
+</div>

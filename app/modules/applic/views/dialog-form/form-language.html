@@ -1,0 +1,43 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-globe"></span> {{'languageDialogText1' | translate}}
+    </h4>
+</div>
+<form name="languageForm">
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body">
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="languages">{{'languageDialogLbLanguages' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <select class="form-control" required="required" id="languages" name="languages"
+                                ng-options="item as item.{{descriptionField}} | translate for item in lang.languages track by item.id"
+                                ng-model="lang.languageSelected">
+                            <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0" ng-show="!languageForm.$pristine && languageForm.languages.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="ability">{{'languageDialogLbAbility' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <select class="form-control" required="required" id="ability" name="ability"
+                                ng-options="item as item.descripcion | translate for item in lang.abilitys track by item.id"
+                                ng-model="lang.abilitySelected">
+                            <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0" ng-show="!languageForm.$pristine && languageForm.ability.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{'educationDialogBtnCancel' | translate}}</button>
+    <button type="submit" class="btn btn-success pull-right" ng-click="submitForm(language)">{{'languageDialogBtnLang' | translate}}</button>
+</div>
+</form>

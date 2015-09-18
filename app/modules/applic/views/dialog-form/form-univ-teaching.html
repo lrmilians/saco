@@ -1,0 +1,80 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-education"></span> {{'univTeachingDialogText1' | translate}}
+    </h4>
+</div>
+<form name="univTeachingForm">
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body">
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="entity">{{'univTeachingDialogLbEntity' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="entity" id="entity"
+                               placeholder="{{'univTeachingDialogPhEntity' | translate}}"
+                               ng-model="univTeaching.entity" required="required" ng-pattern="patternEntity">
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0" ng-show="univTeachingForm.entity.$error.pattern">{{'univTeachingDialogMsgText1' | translate}}</span>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="countrys">{{'languageDialogLbCountrys' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <select class="form-control" required="required" id="countrys" name="countrys"
+                                ng-options="item as item.{{descriptionField}} | translate for item in univTeaching.countrys track by item.id"
+                                ng-model="univTeaching.countrySelected">
+                            <option value="">{{'CHOOSE_OPTION' | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0" ng-show="!univTeachingForm.$pristine && univTeachingForm.countrys.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+            </div>
+            <div class="input-group input-daterange col-xs-12" id="datepicker" mydatepicker-rangedate-year style="margin-bottom: 15px;">
+                <div class="form-group input-group-xs required" >
+                    <label for="startDate" class="col-xs-4 control-label">{{'univTeachingDialogPhStartYear' | translate}} *</label>
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="startDate" id="startDate"
+                                   ng-model="univTeaching.startDate" required="required"
+                                   placeholder="{{'univTeachingDialogPhStartYear' | translate}}" />
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>-->
+                        </div>
+                    </div>
+                    <span class="text-danger text-right col-xs-11" style="margin: 10px 0 10px 0;" ng-show="!educationForm.$pristine && educationForm.startDate.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                </div>
+                <div class="form-group input-group-xs required" style="margin: 50px 0 15px 0;">
+                    <label for="endDate" class="col-xs-4 control-label">{{'univTeachingDialogPhEndYear' | translate}} *</label>
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="endDate" id="endDate"
+                                   ng-model="univTeaching.endDate" required="required"
+                                   placeholder="{{'univTeachingDialogPhEndYear' | translate}}" />
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>-->
+                        </div>
+                    </div>
+                    <span class="text-danger text-right col-xs-11" style="margin: 10px 0 10px 0;" ng-show="!educationForm.$pristine && educationForm.endDate.$error.required">{{'FIELD_MANDATORY' | translate}}</span>
+                </div>
+            </div>
+            <div class="form-group input-group-xs">
+                <label class="control-label col-xs-4" for="description">{{'univTeachingDialogLbDescription' | translate}} *</label>
+                <div class="col-xs-7" style="padding-right: 0px;">
+                    <div class="form-group">
+                        <textarea class="form-control"
+                               name="description" id="description" rows="3"
+                               placeholder="{{'univTeachingDialogPhDescription' | translate}}"
+                               ng-model="univTeaching.description" required="required" ng-pattern="patternDescription"></textarea>
+                    </div>
+                </div>
+                <span class="text-danger text-right col-xs-11" style="margin: -10px 0 10px 0" ng-show="univTeachingForm.description.$error.pattern">{{'univTeachingDialogMsgText2' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{'educationDialogBtnCancel' | translate}}</button>
+    <button type="submit" class="btn btn-success pull-right" ng-click="submitForm(language)">{{'univTeachingDialogBtnUnivTeaching' | translate}}</button>
+</div>
+</form>

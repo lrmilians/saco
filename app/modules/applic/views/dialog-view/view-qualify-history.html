@@ -1,0 +1,43 @@
+<div class="modal-header" style="background-color: #d9edf7;" xmlns="http://www.w3.org/1999/html">
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-user"></span>Historial de calificaciones
+    </h4>
+</div>
+<div class="modal-body" >
+    <div class="panel panel-info" style="margin: 5px 0px;">
+        <div class="panel-body" style="padding-bottom: 0; padding-top: 0;">
+            <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                <thead>
+                <tr>
+                    <th style="width: 40%;">Nombre Baremo</th>
+                    <th style="width: 10%;">Activo</th>
+                    <th style="width: 20%;">Creado</th>
+                    <th style="width: 15%;">Total</th>
+                    <th style="width: 15%;">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-if="dbo.proccess.length === 0">
+                    <td colspan="5">
+                        <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                            <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                            <span class="sr-only">Error:</span>
+                            {{'dashboardEpplicEmpty' | translate}}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="dbo.proccess.length != 0" ng-repeat="procces in dbo.proccess">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success pull-right" ng-click="cancel()">{{'DIALOGS_OK' | translate}}</button>
+</div>

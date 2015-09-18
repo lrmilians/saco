@@ -1,0 +1,30 @@
+<div class="jumbotron" ng-controller="userLoginCtrl as ul">
+    <div class="row">
+        <div class="col-sm-3">
+            <span class="text-left">{{'userloginText1' | translate}}  -- {{message1}}</span>
+            <div>
+                <!--<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                     alt="">-->
+                <form class="form-signin" ng-submit="ul.login()" name="loginForm">
+                    <input type="text" class="form-control" ng-model="ul.userName" placeholder="{{'userloginPHuser' | translate}}" required autofocus>
+                    <input type="password" class="form-control" ng-model="ul.userPassword"  placeholder="{{'userloginPHpassword' | translate}}" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">{{'userloginBtnLogin' | translate}}</button>
+                    <!-- <label class="checkbox pull-left">
+                       <input type="checkbox" value="remember-me">Recordar</label>-->
+                    <a href="#/recover-password" class="pull-right need-help">{{'userloginText3' | translate}}</a><span class="clearfix"></span>
+                </form>
+            </div>
+            <span class="text-left">{{'userloginText2' | translate}}</span>
+            <a href="#/user-register" class="text-center new-account">{{'userloginBtnRegister' | translate}}</a>
+        </div>
+        <div class="col-sm-9">
+            <div class="col-sm-7">
+                <h3 class="h3-without-margin-top">{{'userloginText4' | translate}}</h3>
+                <p>{{'userloginText5' | translate}}</p>
+            </div>
+            <div class="col-sm-2">
+                <img class="img img-rounded img-portada" src="modules/main/images/portada.jpg" alt="..." class="img-rounded">
+            </div>
+        </div>
+    </div>
+</div>

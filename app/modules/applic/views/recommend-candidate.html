@@ -1,0 +1,110 @@
+<div class="jumbotron">
+    <div class="row" ng-controller="processApplicRecomCandidateCtrl as parc" ng-init="parc.initCtrl()">
+        <div class="col-md-3">
+            <div class="col-md-12 panel panel-default" style="padding-top: 10px;">
+                <form class="form-horizontal" ng-submit="parc.register()" name="userForm">
+                    <label class="text-primary">{{'startApplicLbComments' | translate}}</label>
+                    <textarea id="comments" class="form-control" rows="3"></textarea>
+                    <div style="text-align: right; padding: 10px;">
+                        <button type="button" class="btn btn-primary">{{'startApplicBtnSave' | translate}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9 panel panel-default">
+            <div class="panel panel-info" style="margin: 5px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: left;"><h3 style="margin: 0;">{{'processApplicReCandText1' | translate}}</h3></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-warning">{{'proccessApplicIntrucReCand' | translate}}</div>
+                    <form class="form-horizontal"  name="recomCandidateForm">
+                        <div class="row">
+                            <div class="form-group required">
+                                <label for="firstName" class="col-sm-4 control-label">{{'userregLbFirstName' | translate}} *</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="firstName"
+                                           ng-model="parc.firstName" required="required"
+                                           placeholder="{{'userregPhFirstName' | translate}}"
+                                           name="firstName" ng-pattern="patternFirstName">
+                                </div>
+                                <span class="col-sm-12 text-danger text-right" ng-show="recomCandidateForm.firstName.$error.pattern">{{'userregMsgText4' | translate}}</span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="lastName" class="col-sm-4 control-label">{{'userregLbLastName' | translate}} *</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="lastName"
+                                           ng-model="parc.lastName" required="required"
+                                           placeholder="{{'userregPhLastName' | translate}}"
+                                           name="lastName" ng-pattern="patternLastName">
+                                </div>
+                                <span class="col-sm-12 text-danger text-right" ng-show="recomCandidateForm.lastName.$error.pattern">{{'userregMsgText5' | translate}}</span>
+                            </div>
+                            <div class="form-group required">
+                                <label for="contactEmail" class="col-sm-4 control-label">{{'userregLbEmail' | translate}} *</label>
+                                <div class="col-sm-7">
+                                    <input type="email" class="form-control" id="email"
+                                           ng-model="parc.email" required="required"
+                                           placeholder="{{'userregPhEmail' | translate}}"
+                                           name="email" ng-pattern="patternEmail">
+                                </div>
+                                <span class="col-sm-12 text-danger text-right" ng-show="recomCandidateForm.email.$error.pattern">{{'userregMsgText3' | translate}}</span>
+                            </div>
+                            <div class="form-group" style="padding: 0px 85px;">
+                                <button type="submit" class="btn btn-success pull-right" ng-click="parc.setCandidate()">{{parc.btnTitle | translate}}</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table ng-show="!parc.dataEmpty" class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                        <tr>
+                            <th style="width: 30%;">{{'userregLbFirstName' | translate}}</th>
+                            <th style="width: 30%;">{{'userregLbLastName' | translate}}</th>
+                            <th style="width: 20%;">{{'userregLbEmail' | translate}}</th>
+                            <th colspan="2" style="width: 20%; text-align: right;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="parc.candidates.length != 0" ng-repeat="candidate in parc.candidates">
+                            <td>{{candidate.firstName}}</td>
+                            <td>{{candidate.lastName}}</td>
+                            <td>{{candidate.email}}</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-info" style="font-size: 12px;" ng-click="parc.editCandidate(candidate)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{'processApplicSec2BtnEditEdu' | translate}}
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-danger" style="font-size: 12px;" ng-click="parc.deleteCandidate(candidate.id)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'processApplicSec2BtnDelEdu' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <form ng-show="!parc.dataEmpty" class="form-horizontal"  name="recomCandidate1Form" style="margin-top: 30px;">
+                        <div class="row">
+                            <div class="form-group required">
+                                <label for="textInv" class="col-sm-4 control-label">{{'recomCandidateLbTextInv' | translate}} *</label>
+                                <div class="col-sm-7">
+                                    <textarea class="form-control"
+                                              name="textInv" id="textInv" rows="4"
+                                              placeholder="{{'recomCandidatePhTextInv' | translate}}"
+                                              ng-model="parc.textInv" required="required" ng-pattern="patternTextInv"></textarea>
+                                </div>
+                                <span class="col-sm-12 text-danger text-right" ng-show="recomCandidate1Form.textInv.$error.pattern">{{'recomCandidateMsgText3' | translate}}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="text-align: right; padding: 10px 15px;">
+                <button type="button" class="btn btn-primary" ng-click="parc.sendRecomendation()">{{parc.btnTitleSendRecom | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

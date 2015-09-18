@@ -1,0 +1,259 @@
+<div class="jumbotron">
+    <div class="row" ng-controller="processApplicSection3Ctrl as pasec3" ng-init="pasec3.initCtrl()">
+        <div class="col-md-12 panel panel-default">
+            <!--<div class="col-md-12 panel panel-default">
+                    {{'processApplicText2' | translate}}
+            </div>-->
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h4><label class="text-primary">
+                        <span aria-hidden="true" class="glyphicon glyphicon-question-sign"></span>
+                        <span class="sr-only">Error:</span>
+                        {{'processApplicText1' | translate}}</label></h4> <!--{{'processApplicText3' | translate}}-->
+                </div>
+                <div ng-class="{'col-md-6' : pasec3.applicGralInfo.avance == 100,'col-md-8' : pasec3.applicGralInfo.avance != 100}" style="padding: 0;">
+                    <div class="progress progress-striped" style="margin: 10px;">
+                        <div class="progress-bar {{pasec3.classProgress}}" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{pasec3.applicGralInfo.avance}}%">
+                            <span ng-class="{'text-primary' : pa.applicGralInfo.avance == 0}">{{pasec3.applicGralInfo.avance}}%</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding: 0; margin: 5px 0;" ng-show="pasec3.applicGralInfo.avance == 100">
+                    <button type="button" class="btn btn-info" ng-click="registerApplic1()">{{'processApplicBtn1' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 panel panel-default" style="padding: 10px">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#/section1-general-information">{{'processApplicMenu1' | translate}}</a></li>
+                <li><a href="#/section2-education">{{'processApplicMenu2' | translate}}</a></li>
+                <li class="active"><a href="#/section3-university-teaching">{{'processApplicMenu3' | translate}}</a></li>
+                <li><a href="#/section4-work-experience">{{'processApplicMenu4' | translate}}</a></li>
+                <li><a href="#/section5-affiliation">{{'processApplicMenu5' | translate}}</a></li>
+                <li><a href="#/section6-file">{{'processApplicMenu6' | translate}}</a></li>
+                <li><a href="#/section7-to-complete">{{'processApplicMenu7' | translate}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9 panel panel-default">
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="width: 60%; text-align: left;"><h3 style="margin: 0;">{{'processApplicSec3Text1' | translate}}</h3></td>
+                            <td style="width: 40%; text-align: right;"><button type="button" class="btn btn-primary" ng-click="pasec3.instructionsSec3()">{{'processApplicSec1Btn1' | translate}}</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                        <tr>
+                            <th style="width: 40%;">{{'processApplicSec3TbhEntity' | translate}}</th>
+                            <th style="width: 20%;">{{'processApplicSec3TbhCountry' | translate}}</th>
+                            <th style="width: 10%;">{{'processApplicSec3TbhBeginningYear' | translate}}</th>
+                            <th style="width: 10%;">{{'processApplicSec3TbhFinalYear' | translate}}</th>
+                            <th colspan="2" style="width: 20%; text-align: right;">
+                                <button type="button" class="btn btn-default btn-xs btn-success" style="font-size: 12px;" ng-click="pasec3.addUnivTeaching()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>{{'processApplicSec3BtnAddUTeach' | translate}}
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="pasec3.univTeachings.length === 0">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{'processApplicSec2TbEmpty' | translate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="pasec3.univTeachings.length != 0" ng-repeat="univTeaching in pasec3.univTeachings">
+                            <td>{{univTeaching.institucion}}</td>
+                            <td>{{pasec3.countrys[univTeaching.idPais].descripcion | translate}}</td>
+                            <td>{{univTeaching.inicio}}</td>
+                            <td>{{univTeaching.fin}}</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-info" style="font-size: 12px;" ng-click="pasec3.editUnivTeaching(univTeaching)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{'processApplicSec2BtnEditEdu' | translate}}
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-danger" style="font-size: 12px;" ng-click="pasec3.deleteUnivTeaching(univTeaching.id)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'processApplicSec2BtnDelEdu' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="width: 60%; text-align: left;"><h3 style="margin: 0;">{{'processApplicSec3Text2' | translate}}</h3></td>
+                            <td style="width: 40%; text-align: right;"><button type="button" class="btn btn-primary" ng-click="pasec3.instructionsSec3()">{{'processApplicSec1Btn1' | translate}}</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-warning">{{'proccessApplicIntrucPatent' | translate}}</div>
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                        <tr>
+                            <th style="width: 40%;">{{'processApplicSec3TbhPatentName' | translate}}</th>
+                            <th style="width: 20%;">{{'processApplicSec3TbhYearInscription' | translate}}</th>
+                            <th style="width: 20%;">{{'processApplicSec3TbhDurationYears' | translate}}</th>
+                            <th colspan="2" style="width: 20%; text-align: right;">
+                                <button type="button" class="btn btn-default btn-xs btn-success" style="font-size: 12px;"  ng-click="pasec3.addPatent()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>{{'processApplicSec3BtnAddPatent' | translate}}
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="pasec3.patents.length === 0">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{'processApplicSec2TbEmpty' | translate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="pasec3.patents.length != 0" ng-repeat="patent in pasec3.patents">
+                            <td>{{patent.nombre}}</td>
+                            <td>{{patent.anio}}</td>
+                            <td>{{patent.tiempo}}</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-info" style="font-size: 12px;"  ng-click="pasec3.editPatent(patent)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{'processApplicSec2BtnEditEdu' | translate}}
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-danger" style="font-size: 12px;" ng-click="pasec3.deletePatent(patent.id)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'processApplicSec2BtnDelEdu' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="width: 80%; text-align: left;"><h3 style="margin: 0;">{{'processApplicSec3Text3' | translate}}</h3></td>
+                            <td style="width: 20%; text-align: right;"><button type="button" class="btn btn-primary" ng-click="pasec3.instructionsSec3()">{{'processApplicSec1Btn1' | translate}}</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-warning">{{'proccessApplicIntrucConf' | translate}}</div>
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                        <tr>
+                            <th style="width: 50%;">{{'processApplicSec3TbhTitle' | translate}}</th>
+                            <th style="width: 10%;">{{'processApplicSec3TbhYear' | translate}}</th>
+                            <th style="width: 20%;">{{'processApplicSec3TbhCountry' | translate}}</th>
+                            <th colspan="2" style="width: 20%; text-align: right;">
+                                <button type="button" class="btn btn-default btn-xs btn-success" style="font-size: 12px;"  ng-click="pasec3.addConference()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>{{'processApplicSec3BtnAddConf' | translate}}
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="pasec3.conferences.length === 0">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{'processApplicSec2TbEmpty' | translate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="pasec3.conferences.length != 0" ng-repeat="conference in pasec3.conferences">
+                            <td>{{conference.titulo}}</td>
+                            <td>{{conference.anio}}</td>
+                            <td>{{pasec3.countrys[conference.idPais].descripcion | translate}}</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-info" style="font-size: 12px;"  ng-click="pasec3.editConference(conference)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{'processApplicSec2BtnEditEdu' | translate}}
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-danger" style="font-size: 12px;" ng-click="pasec3.deleteConference(conference.id)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'processApplicSec2BtnDelEdu' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info" style="margin: 15px 0px;">
+                <div class="panel-heading">
+                    <table width="100%">
+                        <tr>
+                            <td style="width: 60%; text-align: left;"><h3 style="margin: 0;">{{'processApplicSec3Text4' | translate}}</h3></td>
+                            <td style="width: 40%; text-align: right;"><button type="button" class="btn btn-primary" ng-click="pasec3.instructionsSec3()">{{'processApplicSec1Btn1' | translate}}</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-warning">{{'proccessApplicIntrucDirectedThesis' | translate}}</div>
+                    <table class="table table-hover table-striped table-condensed" style="margin-bottom: 0px;">
+                        <thead>
+                        <tr>
+                            <th style="width: 40%;">{{'processApplicSec3TbhThesisName' | translate}}</th>
+                            <th style="width: 30%;">{{'educationDialogLbUniv' | translate}}</th>
+                            <th style="width: 10%;">{{'processApplicSec3TbhYear' | translate}}</th>
+                            <th colspan="2" style="width: 20%; text-align: right;">
+                                <button type="button" class="btn btn-default btn-xs btn-success" style="font-size: 12px;"  ng-click="pasec3.addDirectedThesis()">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>{{'processApplicSec3BtnAddDirThe' | translate}}
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="pasec3.directedThesis.length === 0">
+                            <td colspan="5">
+                                <div role="alert" class="alert alert-danger" style="margin-bottom: 0; padding: 5px;">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-exclamation-sign"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{'processApplicSec2TbEmpty' | translate}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="pasec3.directedThesis.length != 0" ng-repeat="directedThesi in pasec3.directedThesis">
+                            <td>{{directedThesi.titulo}}</td>
+                            <td>{{directedThesi.nombreUniversidad}}</td>
+                            <td>{{directedThesi.anio}}</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-info" style="font-size: 12px;"  ng-click="pasec3.editDirectedThesis(directedThesi)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>{{'processApplicSec2BtnEditEdu' | translate}}
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs btn-danger" style="font-size: 12px;" ng-click="pasec3.deleteDirectedThesis(directedThesi.idTesis)">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{'processApplicSec2BtnDelEdu' | translate}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="text-align: right; padding: 10px 15px;">
+                <button type="button" class="btn btn-primary" ng-click="continue('section4-work-experience')">{{'processApplicSec1Btn2' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

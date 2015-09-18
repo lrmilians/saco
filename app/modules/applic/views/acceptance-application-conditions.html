@@ -1,0 +1,52 @@
+<div class="jumbotron" ng-controller="startApplicCtrl as sa">
+    <div class="row" ng-init="sa.initCtrl()">
+        <div class="col-md-12 panel panel-default">
+                <h4><label class="text-primary">{{'startApplicText2' | translate}}</label></h4>
+                <hr />
+                <div>
+                    <p style="text-align: left;"><strong>{{'startApplicText3' | translate}}</strong></p>
+                    <ol align="justify">
+                        <li><p>{{'startApplicText4' | translate}}</p></li>
+                        <li><p>{{'startApplicText5' | translate}}</p></li>
+                        <li><p>{{'startApplicText6' | translate}}</p></li>
+                        <li><p>{{'startApplicText7' | translate}}</p></li>
+                        <li><p>{{'startApplicText8' | translate}}</p></li>
+                        <li><p>{{'startApplicText9' | translate}}</p></li>
+                        <li><p>{{'startApplicText10' | translate}}</p></li>
+                    </ol>
+                    <p><strong><a target="_blank" href="">{{'startApplicText11' | translate}}</a></strong></p>
+                </div>
+        {{validations}}
+            <hr />
+            <form ng-submit="sa.validateProfile()" name="validationsForm">
+                <table>
+                    <tr ng-repeat="validatio in sa.validations">
+                        <td style="width: 90%">
+                            <label ng-if="sa.language == 'es_ES'">{{validatio.descripcion}}</label>
+                            <label ng-if="sa.language == 'en_US'">{{validatio.description}}</label>
+                        </td>
+                        <td style="width: 10%">
+                            <div class="radio radio-info radio-inline">
+                                <input id="{{validatio.id}}Y" type="radio" name="{{validatio.id}}Y" ng-value="true" ng-model="newObject[validatio.id]" ng-required="!newObject[validatio.id]">
+                                <label for="{{validatio.id}}Y">{{'yes' | translate}}</label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input id="{{validatio.id}}N" type="radio" name="{{validatio.id}}N" ng-value="false" ng-model="newObject[validatio.id]" ng-required="!newObject[validatio.id]" ng-checked="true" >
+                                <label for="{{validatio.id}}N">{{'no' | translate}}</label>
+                            </div>
+                            <!--<div class="radio" required>
+                                <label><input name="{{validatio.id}}" ng-model="newObject[validatio.id]" type="radio" ng-value="true" ng-required="!newObject[validatio.id]">{{'yes' | translate}}</label>
+                                <label><input name="{{validatio.id}}" ng-model="newObject[validatio.id]" type="radio" ng-value="false" ng-required="!newObject[validatio.id]">{{'no' | translate}}</label>
+                            </div>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="padding: 10px;">
+                            <button type="submit" title="{{'startApplicBtnSelectProfile' | translate}}" class="btn btn-primary">{{'btnContinue' | translate}}</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
